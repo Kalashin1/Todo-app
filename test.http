@@ -1,0 +1,26 @@
+POST http://localhost:3000/todo/
+Content-Type: application/json
+
+{
+  "title": "Piano Class"
+}
+
+###
+
+GET http://localhost:3000/todo
+
+###
+
+GET http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
+
+
+###
+PATCH http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
+Content-Type: application/json
+
+{
+  "title": "Jogging"
+}
+
+###
+DELETE http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
