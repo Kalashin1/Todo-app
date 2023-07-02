@@ -2,7 +2,7 @@ POST http://localhost:3000/todo/
 Content-Type: application/json
 
 {
-  "title": "Piano Class"
+  "title": "Javascript class"
 }
 
 ###
@@ -11,16 +11,22 @@ GET http://localhost:3000/todo
 
 ###
 
-GET http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
+GET http://localhost:3000/todo/649ef6c66e6f87f4a613fd9c
 
 
 ###
-PATCH http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
+PATCH http://localhost:3000/todo/649ef6c66e6f87f4a613fd9c
 Content-Type: application/json
 
 {
-  "title": "Jogging"
+  "status": 1
 }
 
 ###
 DELETE http://localhost:3000/todo/6490c7f99aa0309d3bb4c8a7
+
+###
+GET http://localhost:3000/todo/status/completed
+
+###
+GET http://localhost:3000/todo/get/status?limit=3&status=0

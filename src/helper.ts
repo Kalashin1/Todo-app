@@ -13,3 +13,5 @@ export default function errorHandler (err: Error.ValidationError) {
 
   return errors;
 }
+
+export const TODO_STATUS = ['PENDING', 'COMPLETED'];

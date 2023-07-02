@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTodo = exports.updateTodo = exports.getTodo = exports.getTodos = exports.makeTodo = void 0;
+exports.getTodoByStatus = exports.deleteTodo = exports.updateTodo = exports.getTodo = exports.getTodos = exports.makeTodo = void 0;
 const todos_1 = __importDefault(require("../models/todos"));
 const helper_1 = __importDefault(require("../helper"));
 const makeTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,14 +55,16 @@ const getTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getTodo = getTodo;
 const updateTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { title } = req.body;
+    const { title, status } = req.body;
     try {
         const todo = yield todos_1.default.findById(id);
-        yield (todo === null || todo === void 0 ? void 0 : todo.updateOne({ title }));
+        yield (todo === null || todo === void 0 ? void 0 : todo.updateSelf({
+            title: title,
+            status: parseInt(status)
+        }));
         return res.json({ status: 'updated' });
     }
     catch (error) {
-        // * handle errors
         const err = (0, helper_1.default)(error);
         res.status(400).json(err);
     }
@@ -79,3 +81,17 @@ const deleteTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteTodo = deleteTodo;
+const getTodoByStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { limit, status } = req.query;
+    try {
+        const todos = yield todos_1.default.filterTodo({
+            limit: parseInt(limit),
+            status: parseInt(status)
+        });
+        return res.json(todos);
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+exports.getTodoByStatus = getTodoByStatus;

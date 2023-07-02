@@ -8,4 +8,5 @@ router.get('/todo', todo_1.getTodos);
 router.get('/todo/:id', todo_1.getTodo);
 router.patch('/todo/:id', todo_1.updateTodo);
 router.delete('/todo/:id', todo_1.deleteTodo);
+router.get('/todo/get/status', todo_1.getTodoByStatus);
 exports.default = router;

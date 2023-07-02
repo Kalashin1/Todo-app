@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TODO_STATUS = void 0;
 function errorHandler(err) {
     const errors = {};
     if (err.message.includes('todo validation failed')) {
@@ -12,3 +13,4 @@ function errorHandler(err) {
     return errors;
 }
 exports.default = errorHandler;
+exports.TODO_STATUS = ['PENDING', 'COMPLETED'];

@@ -1,6 +1,8 @@
 import { Schema } from "mongoose";
+import { TODO_STATUS } from "../helper";
+import { Todo } from "../types";
 
-const TodoSchema = new Schema({
+const TodoSchema = new Schema<Todo>({
   title: {
     type: String,
     required: [true, 'Please provide a title']
@@ -8,6 +10,10 @@ const TodoSchema = new Schema({
   completed: {
     type: Boolean,
     default: false
+  },
+  status: {
+    type: String,
+    default: TODO_STATUS[0]
   }
 }, {
   timestamps: true
